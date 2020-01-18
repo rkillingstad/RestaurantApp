@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurant</title>
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</head>
+<script type="text/javascript">
+    // Question: What does this code do?
+    //adds a click function to the add button, creates a new character object and takes the 
+    //user input/value and trims off and extra spaces 
+    $("#placeRes").on("click", function(event) {
+      event.preventDefault();
+      var newReservation = {
+        name: $("#name").val().trim(),
+        role: $("#role").val().trim(),
+        age: $("#age").val().trim(),
+        forcePoints: $("#force-points").val().trim()
+      };
+      // Question: What does this code do??
+      //posts the object you created in the on click function and adds that data to the add.html
+      $.post("/api/characters", newCharacter)
+        .then(function(data) {
+          console.log("add.html", data);
+          alert("Adding character...");
+        });
+    });
+  </script>
+
+<body>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1>IT</h1>
+            <h3>Try and reserve a table, see if you make the cut...</h3>
+            <hr>
+            <a href="/tables"><button class="btn btn-danger btn-lg"><span class="fa fa-plus"></span> View Tables</button></a>
+            
+        </div>
+
+        <form>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Type Your Full Name</label>
+              <input class="form-control" id="exampleFormControlInput1" placeholder="Your Name">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Select the number of people in your party</label>
+              <select class="form-control" id="exampleFormControlSelect1">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+              <br>
+              <button id="placeRes" class="btn btn-danger"><span class="fa fa-plus"></span> Place Reservation</button></a>
+            </div>
+            
+            
+          </form>
+    </div>
+
+
+    <footer>
+
+        API links...
+
+
+    </footer>
+
+
+
+</body>
+
+</html>
