@@ -71,18 +71,14 @@ app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
 
+app.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname, "index.html"));
+  });
+  
+app.get("/tables", function(req, res) {
+    res.sendFile(path.join(__dirname, "tables.html"));
+  }); 
 
-// Create New Reservation - takes in JSON input
-app.post("/reservations", function(req, res) {
-    // req.body hosts is equal to the JSON post sent from the user
-    // This works because of our body parsing middleware
-    var rewRes = req.body;
-    // Using a RegEx Pattern to remove spaces from rewRes
-    rewRes.routeName = rewRes.name.replace(/\s+/g, "").toLowerCase();
-    
-    console.log(rewRes);
-  
-    reservations.push(rewRes);
-  
-    res.json(rewRes);
+app.get("/reservations", function(req, res) {
+    res.sendFile(path.join(__dirname, "reservations.html"));
   });
